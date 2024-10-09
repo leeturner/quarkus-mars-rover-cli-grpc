@@ -1,6 +1,8 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    kotlin("jvm") version "1.9.23"
-    kotlin("plugin.allopen") version "1.9.23"
+    kotlin("jvm") version "2.0.10"
+    kotlin("plugin.allopen") version "2.0.10"
     id("io.quarkus")
 }
 
@@ -21,8 +23,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.quarkus:quarkus-arc")
     testImplementation("io.quarkus:quarkus-junit5")
-    testImplementation("org.wiremock:wiremock:3.5.2")
-    testImplementation("org.wiremock:wiremock-grpc-extension:0.5.0")
+    testImplementation("org.wiremock:wiremock:3.9.1")
+    testImplementation("org.wiremock:wiremock-grpc-extension:0.7.0")
 }
 
 group = "com.leeturner"
@@ -44,6 +46,6 @@ allOpen {
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_21.toString()
-    kotlinOptions.javaParameters = true
+    compilerOptions.jvmTarget.set(JvmTarget.JVM_21)
+    compilerOptions.javaParameters.set(true)
 }
